@@ -1,0 +1,380 @@
+2013-9-3 15:33:18 DEBUG ngx_master_process_cycle[84] master started
+2013-9-3 15:33:18 DEBUG ngx_start_worker_processes[403] start worker processes
+2013-9-3 15:33:18 DEBUG ngx_spawn_process[59] GetModuleFileName: "E:\code\nginx\Debug\nginx.exe"
+2013-9-3 15:33:18 DEBUG ngx_execute[242] start worker process P
+2013-9-3 15:33:18 DEBUG ngx_spawn_process[93] WaitForMultipleObjects: 0l
+2013-9-3 15:33:30 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 15:33:30 DEBUG ngx_http_process_request_line[833] http uri: "/index.html&uid=333&sid=555 HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 15:33:30 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 15:33:30 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 15:33:30 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 15:33:30 DEBUG ngx_http_static_handler[85] http filename: "html/index.html&uid=333&sid=555"
+2013-9-3 15:33:30 ERROR ngx_http_static_handler[130] CreateFile() "html/index.html&uid=333&sid=555" failed
+2013-9-3 15:33:30 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 15:33:30 DEBUG ngx_http_finalize_request[1890] http finalize request: 404, "/index.html&uid=333&sid=555 HTTP/1.1
+Host" a:1, c:1
+2013-9-3 15:33:30 DEBUG ngx_http_special_response_handler[363] http special response: 404, "/index.html&uid=333&sid=555 HTTP/1.1
+Host?(null)"
+2013-9-3 15:33:30 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 15:33:30 DEBUG ngx_http_send_special_response[613] http send response
+2013-9-3 15:33:30 DEBUG ngx_http_output_filter[1859] http output filter "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 15:33:30 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html&uid=333&sid=555 HTTP/1.1
+Host" a:1, c:1
+2013-9-3 15:33:30 DEBUG ngx_http_request_handler[1805] http run request: "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_writer[2222] http writer handler: "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_output_filter[1859] http output filter "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 15:33:30 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:356, s:724l
+2013-9-3 15:33:30 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_writer[2291] http writer done: "/index.html&uid=333&sid=555 HTTP/1.1
+Host"
+2013-9-3 15:33:30 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 15:33:30 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html&uid=333&sid=555 HTTP/1.1
+Host" a:1, c:1
+2013-9-3 15:33:30 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 15:33:30 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 15:33:30 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 15:33:30 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 15:33:30 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 15:33:30 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 15:33:30 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:356 length:-1
+2013-9-3 15:33:30 DEBUG ngx_http_close_connection[3064] close http connection: 356
+2013-9-3 15:33:32 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 15:33:32 DEBUG ngx_http_process_request_line[833] http uri: "/index.html HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 15:33:32 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 15:33:32 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 15:33:32 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 15:33:32 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 15:33:32 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 15:33:32 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 15:33:32 DEBUG ngx_http_output_filter[1859] http output filter "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 15:33:32 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 15:33:32 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html HTTP/1.1
+Host" a:1, c:1
+2013-9-3 15:33:32 DEBUG ngx_http_request_handler[1805] http run request: "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_writer[2222] http writer handler: "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_output_filter[1859] http output filter "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 15:33:32 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:352, s:366l
+2013-9-3 15:33:32 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_writer[2291] http writer done: "/index.html HTTP/1.1
+Host"
+2013-9-3 15:33:32 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 15:33:32 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html HTTP/1.1
+Host" a:1, c:1
+2013-9-3 15:33:32 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 15:33:32 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 15:33:32 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 15:33:32 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 15:33:32 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 15:33:32 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 15:33:32 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:352 length:-1
+2013-9-3 15:33:32 DEBUG ngx_http_close_connection[3064] close http connection: 352
+2013-9-3 15:33:35 DEBUG ngx_spawn_process[59] GetModuleFileName: "E:\code\nginx\Debug\nginx.exe"
+2013-9-3 15:33:35 DEBUG ngx_console_handler[331] console closing, exiting
+2013-9-3 15:33:36 DEBUG ngx_execute[242] start worker process P
+2013-9-3 15:33:36 DEBUG ngx_spawn_process[93] WaitForMultipleObjects: 0l
+2013-9-3 16:1:6 DEBUG ngx_master_process_cycle[84] master started
+2013-9-3 16:1:6 DEBUG ngx_start_worker_processes[403] start worker processes
+2013-9-3 16:1:6 DEBUG ngx_spawn_process[59] GetModuleFileName: "E:\code\nginx\Debug\nginx.exe"
+2013-9-3 16:1:6 DEBUG ngx_execute[242] start worker process P
+2013-9-3 16:1:6 DEBUG ngx_spawn_process[93] WaitForMultipleObjects: 0l
+2013-9-3 16:1:12 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:12 DEBUG ngx_http_process_request_line[833] http uri: "/ HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 16:1:12 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 16:1:12 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 16:1:12 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 16:1:12 DEBUG ngx_http_index_handler[201] open index "html/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_internal_redirect[2336] internal redirect: "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 16:1:12 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 16:1:12 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 16:1:12 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:12 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html" a:1, c:2
+2013-9-3 16:1:12 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:12 DEBUG ngx_http_finalize_request[1890] http finalize request: -4, "/index.html" a:1, c:2
+2013-9-3 16:1:12 DEBUG ngx_http_close_request[2947] http request count:2 blk:0
+2013-9-3 16:1:12 DEBUG ngx_http_request_handler[1805] http run request: "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_writer[2222] http writer handler: "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 16:1:12 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:356, s:366l
+2013-9-3 16:1:12 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_writer[2291] http writer done: "/index.html"
+2013-9-3 16:1:12 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:12 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html" a:1, c:1
+2013-9-3 16:1:12 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 16:1:12 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:12 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 16:1:12 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 16:1:12 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 16:1:12 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:12 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:356 length:-1
+2013-9-3 16:1:12 DEBUG ngx_http_close_connection[3064] close http connection: 356
+2013-9-3 16:1:14 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:14 DEBUG ngx_http_process_request_line[833] http uri: "/ HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+If-Modified-Since: Mon, 04 Oct 2004 15:04:06 GMT
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 16:1:14 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 16:1:14 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 16:1:14 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 16:1:14 DEBUG ngx_http_index_handler[201] open index "html/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_internal_redirect[2336] internal redirect: "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 16:1:14 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 16:1:14 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 16:1:14 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:14 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html" a:1, c:2
+2013-9-3 16:1:14 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:14 DEBUG ngx_http_finalize_request[1890] http finalize request: -4, "/index.html" a:1, c:2
+2013-9-3 16:1:14 DEBUG ngx_http_close_request[2947] http request count:2 blk:0
+2013-9-3 16:1:14 DEBUG ngx_http_request_handler[1805] http run request: "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_writer[2222] http writer handler: "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 16:1:14 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:352, s:157l
+2013-9-3 16:1:14 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_writer[2291] http writer done: "/index.html"
+2013-9-3 16:1:14 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:14 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html" a:1, c:1
+2013-9-3 16:1:14 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 16:1:14 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:14 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 16:1:14 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 16:1:14 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 16:1:14 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:14 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:352 length:-1
+2013-9-3 16:1:14 DEBUG ngx_http_close_connection[3064] close http connection: 352
+2013-9-3 16:1:15 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:15 DEBUG ngx_http_process_request_line[833] http uri: "/ HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+If-Modified-Since: Mon, 04 Oct 2004 15:04:06 GMT
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 16:1:15 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 16:1:15 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 16:1:15 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 16:1:15 DEBUG ngx_http_index_handler[201] open index "html/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_internal_redirect[2336] internal redirect: "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 16:1:15 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 16:1:15 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 16:1:15 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:15 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html" a:1, c:2
+2013-9-3 16:1:15 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:15 DEBUG ngx_http_finalize_request[1890] http finalize request: -4, "/index.html" a:1, c:2
+2013-9-3 16:1:15 DEBUG ngx_http_close_request[2947] http request count:2 blk:0
+2013-9-3 16:1:15 DEBUG ngx_http_request_handler[1805] http run request: "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_writer[2222] http writer handler: "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 16:1:15 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:360, s:157l
+2013-9-3 16:1:15 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_writer[2291] http writer done: "/index.html"
+2013-9-3 16:1:15 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:15 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html" a:1, c:1
+2013-9-3 16:1:15 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 16:1:15 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:15 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 16:1:15 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 16:1:15 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 16:1:15 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:15 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:360 length:-1
+2013-9-3 16:1:15 DEBUG ngx_http_close_connection[3064] close http connection: 360
+2013-9-3 16:1:27 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:27 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:27 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:368 length:0
+2013-9-3 16:1:27 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:27 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 1
+2013-9-3 16:1:27 DEBUG ngx_http_finalize_request[1890] http finalize request: 400, "(null)" a:1, c:1
+2013-9-3 16:1:27 DEBUG ngx_http_terminate_request[2083] http terminate request count:1
+2013-9-3 16:1:27 DEBUG ngx_http_terminate_request[2104] http terminate cleanup count:1 blk:0
+2013-9-3 16:1:27 DEBUG ngx_http_close_request[2947] http request count:1 blk:0
+2013-9-3 16:1:27 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:27 DEBUG ngx_http_close_connection[3064] close http connection: 368
+2013-9-3 16:1:34 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:34 DEBUG ngx_http_process_request_line[833] http uri: "/ HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 16:1:34 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 16:1:34 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 16:1:34 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 16:1:34 DEBUG ngx_http_index_handler[201] open index "html/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_internal_redirect[2336] internal redirect: "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 16:1:34 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 16:1:34 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 16:1:34 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:34 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html" a:1, c:2
+2013-9-3 16:1:34 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:34 DEBUG ngx_http_finalize_request[1890] http finalize request: -4, "/index.html" a:1, c:2
+2013-9-3 16:1:34 DEBUG ngx_http_close_request[2947] http request count:2 blk:0
+2013-9-3 16:1:34 DEBUG ngx_http_request_handler[1805] http run request: "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_writer[2222] http writer handler: "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 16:1:34 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:352, s:366l
+2013-9-3 16:1:34 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_writer[2291] http writer done: "/index.html"
+2013-9-3 16:1:34 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:34 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html" a:1, c:1
+2013-9-3 16:1:34 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 16:1:34 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:34 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 16:1:34 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 16:1:34 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 16:1:34 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:34 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:352 length:-1
+2013-9-3 16:1:34 DEBUG ngx_http_close_connection[3064] close http connection: 352
+2013-9-3 16:1:47 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:47 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:47 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:356 length:0
+2013-9-3 16:1:47 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:47 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 1
+2013-9-3 16:1:47 DEBUG ngx_http_finalize_request[1890] http finalize request: 400, "(null)" a:1, c:1
+2013-9-3 16:1:47 DEBUG ngx_http_terminate_request[2083] http terminate request count:1
+2013-9-3 16:1:47 DEBUG ngx_http_terminate_request[2104] http terminate cleanup count:1 blk:0
+2013-9-3 16:1:47 DEBUG ngx_http_close_request[2947] http request count:1 blk:0
+2013-9-3 16:1:47 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:47 DEBUG ngx_http_close_connection[3064] close http connection: 356
+2013-9-3 16:1:49 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:1:49 DEBUG ngx_http_process_request_line[833] http uri: "/ HTTP/1.1
+Host: 10.1.11.181
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Charset: GBK,utf-8;q=0.7,*;q=0.3
+
+อออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ"
+2013-9-3 16:1:49 DEBUG ngx_http_process_request_headers[957] http process request header line
+2013-9-3 16:1:49 DEBUG ngx_http_process_request_headers[1090] http header done
+2013-9-3 16:1:49 DEBUG ngx_http_process_request_headers[1101] --------------------------------
+2013-9-3 16:1:49 DEBUG ngx_http_index_handler[201] open index "html/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_internal_redirect[2336] internal redirect: "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_static_handler[85] http filename: "html/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_static_handler[139] http static fd: 372
+2013-9-3 16:1:49 DEBUG ngx_http_discard_request_body[454] http set discard body
+2013-9-3 16:1:49 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 0
+2013-9-3 16:1:49 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:49 DEBUG ngx_http_finalize_request[1890] http finalize request: -2, "/index.html" a:1, c:2
+2013-9-3 16:1:49 DEBUG ngx_http_core_content_phase[1356] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:49 DEBUG ngx_http_finalize_request[1890] http finalize request: -4, "/index.html" a:1, c:2
+2013-9-3 16:1:49 DEBUG ngx_http_close_request[2947] http request count:2 blk:0
+2013-9-3 16:1:49 DEBUG ngx_http_request_handler[1805] http run request: "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_writer[2222] http writer handler: "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_output_filter[1859] http output filter "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_postpone_filter[61] http postpone filter "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_overlapped_wsasend_chain[182] wev->complete: 1
+2013-9-3 16:1:49 DEBUG ngx_overlapped_wsasend_chain[309] WSASend ovlp: fd:368, s:366l
+2013-9-3 16:1:49 DEBUG ngx_http_writer[2269] http writer output filter: 0, "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_writer[2291] http writer done: "/index.html"
+2013-9-3 16:1:49 DEBUG ngx_http_writer[2295] ++++++++++++++++++++++++++++++++++++
+2013-9-3 16:1:49 DEBUG ngx_http_finalize_request[1890] http finalize request: 0, "/index.html" a:1, c:1
+2013-9-3 16:1:49 DEBUG ngx_http_set_keepalive[2424] set http keepalive handler
+2013-9-3 16:1:49 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:1:49 DEBUG ngx_http_set_keepalive[2541] hc free: 00000000 0
+2013-9-3 16:1:49 DEBUG ngx_http_set_keepalive[2554] hc busy: 00000000 0
+2013-9-3 16:1:49 DEBUG ngx_http_keepalive_handler[2647] http keepalive handler
+2013-9-3 16:1:49 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:1:49 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:368 length:-1
+2013-9-3 16:1:49 DEBUG ngx_http_close_connection[3064] close http connection: 368
+2013-9-3 16:2:7 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:2:7 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 0
+2013-9-3 16:2:7 DEBUG ngx_overlapped_wsarecv[134] receive ovlp: fd:360 length:0
+2013-9-3 16:2:7 DEBUG ngx_http_process_request_line[702] http process request line
+2013-9-3 16:2:7 DEBUG ngx_overlapped_wsarecv[86] rev->complete: 1
+2013-9-3 16:2:7 DEBUG ngx_http_finalize_request[1890] http finalize request: 400, "(null)" a:1, c:1
+2013-9-3 16:2:7 DEBUG ngx_http_terminate_request[2083] http terminate request count:1
+2013-9-3 16:2:7 DEBUG ngx_http_terminate_request[2104] http terminate cleanup count:1 blk:0
+2013-9-3 16:2:7 DEBUG ngx_http_close_request[2947] http request count:1 blk:0
+2013-9-3 16:2:7 DEBUG ngx_http_free_request[2976] http close request
+2013-9-3 16:2:7 DEBUG ngx_http_close_connection[3064] close http connection: 360

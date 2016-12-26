@@ -1,0 +1,11 @@
+/Debug
+/logs/nginx.pid
+/logs/access.log
+/logs/error.log
+/ipch
+/Release
+/nginx.sdf
+/pcre-8.12/build/include
+/pcre-8.12/build/lib
+/pcre-8.12/build/share
+/pcre-8.12/build/bin
