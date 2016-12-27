@@ -3,7 +3,11 @@
  * Copyright (C) Igor Sysoev
  */
 
-
+/*
+ * 本模块的作用是：
+ * 1.读取磁盘上的静态文件。
+ * 2.把读取到的静态文件作为产生的输出。
+ */
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <ngx_http.h>
@@ -43,7 +47,8 @@ ngx_module_t  ngx_http_static_module = {
     NGX_MODULE_V1_PADDING
 };
 
-
+//核心处理逻辑ngx_http_static_handler函数。该函数大概占了这个模块代码量的百分之八九十。
+//ngx_http_static_module模块的处理函数，检查URI的有效性，映射URI到磁盘路径，再访问文件，最后调用ngx_http_output_filter，把文件内容交给过滤链表处理
 static ngx_int_t
 ngx_http_static_handler(ngx_http_request_t *r)
 {
@@ -57,11 +62,15 @@ ngx_http_static_handler(ngx_http_request_t *r)
     ngx_chain_t                out;
     ngx_open_file_info_t       of;
     ngx_http_core_loc_conf_t  *clcf;
-
+	
+	//检查客户端请求的类型(r->method)如果请求类型不是GET、HEAD、POST则拒绝客户端发起的请求。
+	//否则，继续处理。
     if (!(r->method & (NGX_HTTP_GET|NGX_HTTP_HEAD|NGX_HTTP_POST))) {
         return NGX_HTTP_NOT_ALLOWED;
     }
-
+	
+	//判断请求的uri的结尾字符是不是斜杠'/'；
+	//如果是，说明求情不是一个文件，给后续的handler处理。
     if (r->uri.data[r->uri.len - 1] == '/') {
         return NGX_DECLINED;
     }
@@ -72,7 +81,9 @@ ngx_http_static_handler(ngx_http_request_t *r)
      * ngx_http_map_uri_to_path() allocates memory for terminating '\0'
      * so we do not need to reserve memory for '/' for possible redirect
      */
-
+	
+	//ngx_http_map_uri_to_paht函数的作用是把请求的http协议的路径转化为文件系统的路径
+	//然后根据转化来的具体路径，去打开文件
     last = ngx_http_map_uri_to_path(r, &path, &root, 0);
     if (last == NULL) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
@@ -94,7 +105,11 @@ ngx_http_static_handler(ngx_http_request_t *r)
     of.min_uses = clcf->open_file_cache_min_uses;
     of.errors = clcf->open_file_cache_errors;
     of.events = clcf->open_file_cache_events;
-
+	
+	//根据相关配置项，对文件做两种检查
+	//1.如果求情的文件是一个symbol link，根据配置是否应许符号连接，不应许则返回错误。
+	//2.如果请求的是一个目录名称，则也返回错误。
+	//检查没问题的话，就读取文件，返回内容给一下个filter.
     if (ngx_open_cached_file(clcf->open_file_cache, &path, &of, r->pool)
         != NGX_OK)
     {
@@ -256,10 +271,10 @@ ngx_http_static_handler(ngx_http_request_t *r)
     out.buf = b;
     out.next = NULL;
 
-    return ngx_http_output_filter(r, &out);
+    return ngx_http_output_filter(r, &out); //将文件内容交给过滤链表进行处理输出
 }
 
-
+//解析完配置项后调用，仅仅是把handler挂载到NGX_HTTP_CONTENT_PHASE处理阶段
 static ngx_int_t
 ngx_http_static_init(ngx_conf_t *cf)
 {
@@ -273,7 +288,7 @@ ngx_http_static_init(ngx_conf_t *cf)
         return NGX_ERROR;
     }
 
-    *h = ngx_http_static_handler;
+    *h = ngx_http_static_handler;//添加数组元素,挂载这个handler到NGX_HTTP_CONTENT_PHASE处理阶段
 
     return NGX_OK;
 }

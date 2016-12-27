@@ -30,14 +30,15 @@ typedef ngx_int_t (*ngx_http_get_variable_pt) (ngx_http_request_t *r,
 #define NGX_HTTP_VAR_INDEXED      4
 #define NGX_HTTP_VAR_NOHASH       8
 
-
+//参考资料：
+//http://blog.csdn.net/dingyujie/article/details/7515904
 struct ngx_http_variable_s {
-    ngx_str_t                     name;   /* must be first to build the hash */
-    ngx_http_set_variable_pt      set_handler;
-    ngx_http_get_variable_pt      get_handler;
-    uintptr_t                     data;
-    ngx_uint_t                    flags;
-    ngx_uint_t                    index;
+    ngx_str_t                     name;         /* must be first to build the hash */ //变量的字符串值
+    ngx_http_set_variable_pt      set_handler;  //使用变量中的值设置request的某个成员的值
+    ngx_http_get_variable_pt      get_handler;  //根据request中成员(如uri，args等)的值来设置，r->variables中对应变量的内容
+    uintptr_t                     data;         //在set和get操作中使用，一般是r中某个成员在request结构中的offset
+    ngx_uint_t                    flags;        //一些在set和get中控制特定动作的标志
+    ngx_uint_t                    index;        //某个变量在r->variabels或者cmcf->variabels中数组中的下标
 };
 
 

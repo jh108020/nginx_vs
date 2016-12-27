@@ -19,12 +19,12 @@ CRITICAL_SECTION  ngx_log_stdout_cs;
 
 static char *ngx_error_log(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
-
+// ngx_errlog_module指令数组
 static ngx_command_t  ngx_errlog_commands[] = {
 
     {ngx_string("error_log"),
      NGX_MAIN_CONF|NGX_CONF_1MORE,
-     ngx_error_log,
+     ngx_error_log,   // 指令解析函数
      0,
      0,
      NULL},
@@ -32,10 +32,10 @@ static ngx_command_t  ngx_errlog_commands[] = {
     ngx_null_command
 };
 
-
+// ngx_errlog_module模块定义
 static ngx_core_module_t  ngx_errlog_module_ctx = {
-    ngx_string("errlog"),
-    NULL,
+    ngx_string("errlog"),  // 模块名字
+    NULL,                  // 不需要配置结构
     NULL
 };
 
@@ -60,7 +60,7 @@ static ngx_log_t        ngx_log;
 static ngx_open_file_t  ngx_log_file;
 ngx_uint_t              ngx_use_stderr = 1;
 
-
+//数组err_levels与nginx日志级别对应
 static ngx_str_t err_levels[] = {
     ngx_null_string,
     ngx_string("emerg"),
@@ -279,7 +279,7 @@ ngx_log_init(u_char *prefix)
     ngx_log.file = &ngx_log_file;
     ngx_log.log_level = NGX_LOG_NOTICE;
 
-    name = (u_char *) NGX_ERROR_LOG_PATH;
+    name = (u_char *) NGX_ERROR_LOG_PATH;  // 设置nginx_errlog的path，这个宏在ngx_auto_config.h中有定义“logs/error.log”
 
     /*
      * we use ngx_strlen() here since BCC warns about
@@ -289,7 +289,7 @@ ngx_log_init(u_char *prefix)
     nlen = ngx_strlen(name);
 
     if (nlen == 0) {
-        ngx_log_file.fd = ngx_stderr;
+        ngx_log_file.fd = ngx_stderr;  //如果没有设置日志输出文件，就默认采用标准错误输出流, 这里几乎只是做一个预防性的代码
         return &ngx_log;
     }
 
@@ -300,7 +300,7 @@ ngx_log_init(u_char *prefix)
 #else
     if (name[0] != '/') {
 #endif
-
+        // 检查编译的时候是否有prefix，如果有prefix就将log路径串起来
         if (prefix) {
             plen = ngx_strlen(prefix);
 
@@ -312,7 +312,7 @@ ngx_log_init(u_char *prefix)
             plen = 0;
 #endif
         }
-
+        // 检查是否有路径前缀，如有就加到前面，使用绝对路径上的日志文件，如果没有，使用当前目录下的日志文件
         if (plen) {
             name = malloc(plen + nlen + 2);
             if (name == NULL) {
@@ -427,7 +427,7 @@ ngx_log_set_levels(ngx_conf_t *cf, ngx_log_t *log)
 
     return NGX_CONF_OK;
 }
-
+// ngx_errlog_module指令解析函数
 
 static char *
 ngx_error_log(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
@@ -458,7 +458,7 @@ ngx_error_log(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 
     cf->cycle->new_log.log_level = 0;
-
+	// 设置ngx_cycle_t中的log变量
     return ngx_log_set_levels(cf, &cf->cycle->new_log);
 }
 

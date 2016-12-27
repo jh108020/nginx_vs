@@ -13,7 +13,7 @@ static ngx_int_t ngx_enable_accept_events(ngx_cycle_t *cycle);
 static ngx_int_t ngx_disable_accept_events(ngx_cycle_t *cycle);
 static void ngx_close_accepted_connection(ngx_connection_t *c);
 
-
+//这个函数被调用是当listen 句柄有可读事件之后才被调用
 void
 ngx_event_accept(ngx_event_t *ev)
 {
@@ -48,7 +48,7 @@ ngx_event_accept(ngx_event_t *ev)
 
     do {
         socklen = NGX_SOCKADDRLEN;
-
+//开始accept句柄
 #if (NGX_HAVE_ACCEPT4)
         if (use_accept4) {
             s = accept4(lc->fd, (struct sockaddr *) sa, &socklen,
@@ -57,10 +57,10 @@ ngx_event_accept(ngx_event_t *ev)
             s = accept(lc->fd, (struct sockaddr *) sa, &socklen);
         }
 #else
-        s = accept(lc->fd, (struct sockaddr *) sa, &socklen);
+        s = accept(lc->fd, (struct sockaddr *) sa, &socklen);  // accept一个新的连接
 #endif
 
-        if (s == -1) {
+        if (s == -1) {  //连接的错误处理
             err = ngx_socket_errno;
 
             if (err == NGX_EAGAIN) {
@@ -102,10 +102,11 @@ ngx_event_accept(ngx_event_t *ev)
 #if (NGX_STAT_STUB)
         (void) ngx_atomic_fetch_add(ngx_stat_accepted, 1);
 #endif
-
+        //accept到一个新的连接以后，就重新计算ngx_accept_disabled的值。它主要用来做负载均衡使用
         ngx_accept_disabled = ngx_cycle->connection_n / 8
                               - ngx_cycle->free_connection_n;
 
+        //从连接池取得连接，然后创建连接里面包含的数据结构
         c = ngx_get_connection(s, ev->log);
 
         if (c == NULL) {
@@ -120,13 +121,15 @@ ngx_event_accept(ngx_event_t *ev)
 #if (NGX_STAT_STUB)
         (void) ngx_atomic_fetch_add(ngx_stat_active, 1);
 #endif
-
+        
+        //为该连接建立内存池
         c->pool = ngx_create_pool(ls->pool_size, ev->log);
         if (c->pool == NULL) {
             ngx_close_accepted_connection(c);
             return;
         }
-
+        
+        //分配客户端地址
         c->sockaddr = ngx_palloc(c->pool, socklen);
         if (c->sockaddr == NULL) {
             ngx_close_accepted_connection(c);
@@ -135,6 +138,7 @@ ngx_event_accept(ngx_event_t *ev)
 
         ngx_memcpy(c->sockaddr, sa, socklen);
 
+        //分配log
         log = ngx_palloc(c->pool, sizeof(ngx_log_t));
         if (log == NULL) {
             ngx_close_accepted_connection(c);
@@ -142,7 +146,7 @@ ngx_event_accept(ngx_event_t *ev)
         }
 
         /* set a blocking mode for aio and non-blocking mode for others */
-
+		//当使用aio时，采用阻塞方式；其他模式(epoll\select)使用非阻塞
         if (ngx_inherited_nonblocking) {
             if (ngx_event_flags & NGX_USE_AIO_EVENT) {
                 if (ngx_blocking(s) == -1) {
@@ -166,6 +170,7 @@ ngx_event_accept(ngx_event_t *ev)
 
         *log = ls->log;
 
+        //设置读取的回调，这里依赖于操作系统
         c->recv = ngx_recv;
         c->send = ngx_send;
         c->recv_chain = ngx_recv_chain;
@@ -174,6 +179,7 @@ ngx_event_accept(ngx_event_t *ev)
         c->log = log;
         c->pool->log = log;
 
+        //设置client的ip地址
         c->socklen = socklen;
         c->listening = ls;
         c->local_sockaddr = ls->sockaddr;
@@ -190,12 +196,13 @@ ngx_event_accept(ngx_event_t *ev)
 #endif
         }
 #endif
-
+        
+        //准备设置读写的结构
         rev = c->read;
         wev = c->write;
 
         wev->ready = 1;
-
+        //这里使用的epoll模型，在这里设置连接为nonblocking
         if (ngx_event_flags & (NGX_USE_AIO_EVENT|NGX_USE_RTSIG_EVENT)) {
             /* rtsig, aio, iocp */
             rev->ready = 1;
@@ -208,6 +215,7 @@ ngx_event_accept(ngx_event_t *ev)
 #endif
         }
 
+        //设置log
         rev->log = log;
         wev->log = log;
 
@@ -219,7 +227,7 @@ ngx_event_accept(ngx_event_t *ev)
          *           - ngx_atomic_fetch_add()
          *             or protection by critical section or light mutex
          */
-
+		// ngx_connection_counter是nginx的连接计数器
         c->number = ngx_atomic_fetch_add(ngx_connection_counter, 1);
 
 #if (NGX_STAT_STUB)
@@ -269,7 +277,8 @@ ngx_event_accept(ngx_event_t *ev)
 
         ngx_log_debug3(NGX_LOG_DEBUG_EVENT, log, 0,
                        "*%d accept: %V fd:%d", c->number, &c->addr_text, s);
-
+		/*  调用ngx_add_conn将新建的连接加入nginx的事件循环。在使用epoll时，实际上会调用ngx_epoll_add_connection函数，
+		最终调用epoll_ctl添加事件，这样后续就会监听到来自该socket的数据。*/
         if (ngx_add_conn && (ngx_event_flags & NGX_USE_EPOLL_EVENT) == 0) {
             if (ngx_add_conn(c) == NGX_ERROR) {
                 ngx_close_accepted_connection(c);
@@ -280,7 +289,8 @@ ngx_event_accept(ngx_event_t *ev)
         log->data = NULL;
         log->handler = NULL;
 
-        ls->handler(c);
+		//它将完成新连接的最后初始化工作，同时将accept到的新连接放入epoll中，挂在handler上的函数就是ngx_http_init_connection
+        ls->handler(c);// 被初始化为 ngx_http_init_connection
 
         if (ngx_event_flags & NGX_USE_KQUEUE_EVENT) {
             ev->available--;

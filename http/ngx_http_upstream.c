@@ -366,25 +366,26 @@ ngx_conf_bitmask_t  ngx_http_upstream_ignore_headers_masks[] = {
     { ngx_null_string, 0 }
 };
 
-
+//nginx的请求转发机制，需要调函该函数来创建upstream对象
 ngx_int_t
 ngx_http_upstream_create(ngx_http_request_t *r)
 {
     ngx_http_upstream_t  *u;
 
-    u = r->upstream;
-
+    u = r->upstream;//upstream对象
+    /*若已经穿gian过了且定义了cleanup成员，则调用cleanup清理方法将原始结构体清除*/
     if (u && u->cleanup) {
         r->main->count++;
         ngx_http_upstream_cleanup(r);
     }
 
-    u = ngx_pcalloc(r->pool, sizeof(ngx_http_upstream_t));
+    /*从内存池分配ngx_http_upstream_t的空间*/
+    u = ngx_pcalloc(r->pool, sizeof(ngx_http_upstream_t));//创建对象
     if (u == NULL) {
         return NGX_ERROR;
     }
 
-    r->upstream = u;
+    r->upstream = u;//指针赋值
 
     u->peer.log = r->connection->log;
     u->peer.log_error = NGX_ERROR_ERR;
@@ -399,18 +400,21 @@ ngx_http_upstream_create(ngx_http_request_t *r)
     return NGX_OK;
 }
 
-
+//启动upstream机制
 void
 ngx_http_upstream_init(ngx_http_request_t *r)
 {
     ngx_connection_t     *c;
-
+    /*获取当前请求中的连接*/
     c = r->connection;
-
+    /*输出log*/
     ngx_log_debug1(NGX_LOG_DEBUG_HTTP, c->log, 0,
                    "http init upstream, client timer: %d", c->read->timer_set);
 	NGX_LOG(LOG_DEBUG, "http init upstream, client timer: %d", c->read->timer_set);
-
+    /*
+      如果原本这个请求的读事件已经设置了定时器，即加入了定时器红黑书中，那么就删除这个定时器，
+      因为在upstream中不需要定时器事件。
+    */
     if (c->read->timer_set) {
         ngx_del_timer(c->read);
     }
@@ -426,7 +430,7 @@ ngx_http_upstream_init(ngx_http_request_t *r)
             }
         }
     }
-
+    //这里启动了upstream机制
     ngx_http_upstream_init_request(r);
 }
 
@@ -482,11 +486,12 @@ ngx_http_upstream_init_request(ngx_http_request_t *r)
         r->read_event_handler = ngx_http_upstream_rd_check_broken_connection;
         r->write_event_handler = ngx_http_upstream_wr_check_broken_connection;
     }
-
+    //当前请求包体的结构保存在upstream的request_bufs成员当中。
     if (r->request_body) {
         u->request_bufs = r->request_body->bufs;
     }
-
+    //调用create_request回调方法去构造request,注意这个request并不是重新创建出来的
+    //而是原来下游与nginx请求服务的request
     if (u->create_request(r) != NGX_OK) {
         ngx_http_finalize_request(r, NGX_HTTP_INTERNAL_SERVER_ERROR);
         return;
@@ -504,7 +509,7 @@ ngx_http_upstream_init_request(ngx_http_request_t *r)
     u->output.filter_ctx = &u->writer;
 
     u->writer.pool = r->pool;
-
+    //创建空间用于储存上游响应的状态
     if (r->upstream_states == NULL) {
 
         r->upstream_states = ngx_array_create(r->pool, 1,
@@ -525,7 +530,7 @@ ngx_http_upstream_init_request(ngx_http_request_t *r)
 
         ngx_memzero(u->state, sizeof(ngx_http_upstream_state_t));
     }
-
+    //添加一个方法用于在结束的时候负责销毁upstream，做一些清理工作
     cln = ngx_http_cleanup_add(r, 0);
     if (cln == NULL) {
         ngx_http_finalize_request(r, NGX_HTTP_INTERNAL_SERVER_ERROR);
@@ -551,7 +556,7 @@ ngx_http_upstream_init_request(ngx_http_request_t *r)
                                                NGX_HTTP_INTERNAL_SERVER_ERROR);
                 return;
             }
-
+			//连接上游服务器
             ngx_http_upstream_connect(r, u);
 
             return;
@@ -620,7 +625,7 @@ ngx_http_upstream_init_request(ngx_http_request_t *r)
     }
 
 found:
-
+	//初始化负载均衡算法
     if (uscf->peer.init(r, uscf) != NGX_OK) {
         ngx_http_upstream_finalize_request(r, u,
                                            NGX_HTTP_INTERNAL_SERVER_ERROR);
@@ -1071,7 +1076,8 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
     }
 }
 
-
+//连接上游服务器
+// u = r->upstream
 static void
 ngx_http_upstream_connect(ngx_http_request_t *r, ngx_http_upstream_t *u)
 {
@@ -1101,7 +1107,7 @@ ngx_http_upstream_connect(ngx_http_request_t *r, ngx_http_upstream_t *u)
     tp = ngx_timeofday();
     u->state->response_sec = tp->sec;
     u->state->response_msec = tp->msec;
-
+    //连接上游服务器
     rc = ngx_event_connect_peer(&u->peer);
 
     ngx_log_debug1(NGX_LOG_DEBUG_HTTP, r->connection->log, 0,
@@ -1132,10 +1138,14 @@ ngx_http_upstream_connect(ngx_http_request_t *r, ngx_http_upstream_t *u)
     c = u->peer.connection;
 
     c->data = r;
-
+    //读写事件已经在前面ngx_event_connect_peer中添加到事件循环当中，这里设置其handler
     c->write->handler = ngx_http_upstream_handler;
     c->read->handler = ngx_http_upstream_handler;
 
+    //当上游的响应到达时，也就是读事件发生，这时候会调用c->read->handler也就是
+    // ngx_http_upstream_handler回调函数。此时该函数直接调用u->read_event_handler
+    // 来处理，也就是ngx_http_upstream_process_header回调函数，而在这个函数中接受
+    //并且解析完了响应头之后，调用了upstream::process_header来处理之
     u->write_event_handler = ngx_http_upstream_send_request_handler;
     u->read_event_handler = ngx_http_upstream_process_header;
 
@@ -4222,7 +4232,7 @@ invalid:
     return NGX_CONF_ERROR;
 }
 
-
+//配置上游服务器列表
 ngx_http_upstream_srv_conf_t *
 ngx_http_upstream_add(ngx_conf_t *cf, ngx_url_t *u, ngx_uint_t flags)
 {
@@ -4500,11 +4510,11 @@ ngx_http_upstream_create_main_conf(ngx_conf_t *cf)
     return umcf;
 }
 
-
+//upstream初始化
 static char *
 ngx_http_upstream_init_main_conf(ngx_conf_t *cf, void *conf)
 {
-    ngx_http_upstream_main_conf_t  *umcf = conf;
+    ngx_http_upstream_main_conf_t  *umcf = conf;//main配置
 
     ngx_uint_t                      i;
     ngx_array_t                     headers_in;
@@ -4512,16 +4522,16 @@ ngx_http_upstream_init_main_conf(ngx_conf_t *cf, void *conf)
     ngx_hash_init_t                 hash;
     ngx_http_upstream_init_pt       init;
     ngx_http_upstream_header_t     *header;
-    ngx_http_upstream_srv_conf_t  **uscfp;
+    ngx_http_upstream_srv_conf_t  **uscfp;//服务器配置数组
 
-    uscfp = umcf->upstreams.elts;
+    uscfp = umcf->upstreams.elts;//得到所有的upstreams块
 
-    for (i = 0; i < umcf->upstreams.nelts; i++) {
+    for (i = 0; i < umcf->upstreams.nelts; i++) {//遍历数组
 
         init = uscfp[i]->peer.init_upstream ? uscfp[i]->peer.init_upstream:
                                             ngx_http_upstream_init_round_robin;
 
-        if (init(cf, uscfp[i]) != NGX_OK) {
+        if (init(cf, uscfp[i]) != NGX_OK) {//执行初始化函数
             return NGX_CONF_ERROR;
         }
     }
